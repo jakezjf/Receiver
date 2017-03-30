@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:baselineAligned="false">
+
+    <Button android:id="@+id/send_static" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="发送自定义静态注册广播" />
+
+    <Button
+        android:id="@+id/send_dynamic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="发送自定义动态注册广播" />
+
+    <Button
+        android:id="@+id/lock_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="锁屏" />
+
+    <Button android:id="@+id/send_system" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="退出" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="紧急联系人手机号码" />
+
+    <EditText
+        android:id="@+id/Number"
+        android:numeric="integer"
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:hint="请输入电话号码" />
+
+    <Button
+        android:id="@+id/phone_num"
+        android:layout_width="131dp"
+        android:layout_height="wrap_content"
+        android:text="设置紧急联系人" />
+
+</LinearLayout>
