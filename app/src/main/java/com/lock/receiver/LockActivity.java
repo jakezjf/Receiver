@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import java.util.Thread;
 
 import static com.lock.receiver.R.layout.lock_screen;
 
@@ -61,7 +62,18 @@ public class LockActivity extends Activity {
                     {
                         Toast.makeText(LockActivity.this, "错误5次...",
                                 Toast.LENGTH_SHORT).show();
-                        mGestureLockViewGroup.setUnMatchExceedBoundary(5);
+                        new Thread() {
+                            public void run() {
+                                try {
+                                    Thread.sleep(3000);
+                                } catch (InterruptedException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                                }
+                                startAlarm();
+                                mGestureLockViewGroup.setUnMatchExceedBoundary(5);
+                            }
+                        }.start();
                     }
 
                     @Override
@@ -134,6 +146,25 @@ public class LockActivity extends Activity {
 
 
         }
+
+    private void startAlarm() {  
+        mMediaPlayer = MediaPlayer.create(this, getSystemDefultRingtoneUri());  
+        mMediaPlayer.setLooping(true);  
+        try {  
+            mMediaPlayer.prepare();  
+        } catch (IllegalStateException e) {  
+            e.printStackTrace();  
+        } catch (IOException e) {  
+            e.printStackTrace();  
+        }  
+        mMediaPlayer.start();  
+    }  
+
+    //系统默认铃声 url
+    private Uri getSystemDefultRingtoneUri() {  
+        return RingtoneManager.getActualDefaultRingtoneUri(this,  
+                RingtoneManager.TYPE_RINGTONE);  
+    }  
 
     void setLock(){
         SharedPreferences pref = LockActivity.this.getSharedPreferences("lockSTATE", Context.MODE_PRIVATE);
